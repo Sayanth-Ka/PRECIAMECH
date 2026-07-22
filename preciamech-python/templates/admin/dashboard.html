@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — Preciamech</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="admin-layout">
+  <aside class="admin-sidebar">
+    <div class="sidebar-brand">
+      <div>Preciamech</div>
+      <small>Admin Panel</small>
+    </div>
+    <nav class="sidebar-nav">
+
+    <a href="{{ url_for('admin_dashboard') }}" class="active">
+        <span>📊</span> Dashboard
+    </a>
+
+    <a href="{{ url_for('admin_project_new') }}">
+        <span>➕</span> Add Project
+    </a>
+
+    <a href="{{ url_for('admin_employees') }}">
+        <span>👨‍💼</span> Employees
+    </a>
+
+    <a href="{{ url_for('admin_employee_new') }}">
+        <span>👤</span> Add Employee
+    </a>
+
+    <a href="{{ url_for('index') }}" target="_blank">
+        <span>🌐</span> View Website
+    </a>
+
+    <a href="{{ url_for('admin_logout') }}" style="margin-top:2rem;">
+        <span>🚪</span> Sign Out
+    </a>
+
+</nav>
+  </aside>
+
+  <div class="admin-main">
+    <div class="admin-topbar">
+      <h1>Dashboard</h1>
+      <a href="{{ url_for('admin_project_new') }}" class="btn btn-primary btn-sm">+ New Project</a>
+    </div>
+
+    <div class="admin-content">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endwith %}
+
+      <div class="grid-4" style="margin-bottom:2.5rem;">
+
+    <div class="stat-card">
+        <div class="stat-icon">📁</div>
+        <div class="stat-number">{{ total }}</div>
+        <div class="stat-label">Projects</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">👨‍💼</div>
+        <div class="stat-number">{{ employee_count }}</div>
+        <div class="stat-label">Employees</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">✅</div>
+        <div class="stat-number">{{ completed }}</div>
+        <div class="stat-label">Completed</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon">⭐</div>
+        <div class="stat-number">{{ featured_count }}</div>
+        <div class="stat-label">Featured</div>
+    </div>
+    </div>
+      <div class="table-card">
+        <div class="table-header">
+          <h3>All Projects</h3>
+          <div style="display:flex;gap:10px;">
+
+    <a href="{{ url_for('admin_project_new') }}"
+       class="btn btn-primary btn-sm">
+        + New Project
+    </a>
+
+    <a href="{{ url_for('admin_employee_new') }}"
+       class="btn btn-dark btn-sm">
+        + New Employee
+    </a>
+
+</div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Sector</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Featured</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for project in projects %}
+              <tr>
+                <td style="color:var(--muted);">{{ project.id }}</td>
+                <td><strong>{{ project.title }}</strong></td>
+                <td><span class="badge badge-blue">{{ project.sector_label }}</span></td>
+                <td style="color:var(--muted);font-size:.88rem;">{{ project.location }}</td>
+                <td>
+                  {% if project.status == 'completed' %}
+                    <span class="badge badge-green">Completed</span>
+                  {% else %}
+                    <span class="badge badge-gold">In Progress</span>
+                  {% endif %}
+                </td>
+                <td>
+                  <form method="post"
+                        action="{{ url_for('admin_toggle_featured', project_id=project.id) }}"
+                        style="display:inline;">
+                    <button type="submit"
+                            style="background:none;border:none;cursor:pointer;font-size:1.2rem;"
+                            title="Toggle featured">
+                      {% if project.featured %}⭐{% else %}☆{% endif %}
+                    </button>
+                  </form>
+                </td>
+                <td>
+                  <div class="actions-cell">
+                    <a href="{{ url_for('project_detail', project_id=project.id) }}"
+                       target="_blank" class="btn btn-sm"
+                       style="border:1px solid var(--border);color:var(--text);">View</a>
+                    <a href="{{ url_for('admin_project_edit', project_id=project.id) }}"
+                       class="btn btn-sm btn-dark">Edit</a>
+                    <form method="post"
+                          action="{{ url_for('admin_project_delete', project_id=project.id) }}"
+                          style="display:inline;">
+                      <button type="submit" class="btn btn-sm btn-danger"
+                              data-confirm="Delete '{{ project.title }}'? This cannot be undone.">
+                        Delete
+                      </button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+              {% else %}
+              <tr>
+                <td colspan="7" style="text-align:center;color:var(--muted);padding:3rem;">
+                  No projects yet.
+                  <a href="{{ url_for('admin_project_new') }}" style="color:var(--gold);">Add your first project →</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

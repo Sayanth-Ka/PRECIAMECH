@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ employee.name }} - PRECIAMECH{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <div class="container">
+        <h1>Name : {{ employee.name }}</h1>
+        <h1>Experience : {{ employee.experience }}
+    </div>
+</div>
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="detail-grid">
+
+            <!-- LEFT SIDE -->
+
+            <div>
+
+                {% if employee.image_filename %}
+
+                <img src="{{ url_for('static', filename='uploads/' + employee.image_filename) }}"
+                     style="width:100%;
+                     max-width:450px;
+                     border-radius:10px;
+                     margin-bottom:25px;">
+
+                {% else %}
+
+                <div class="about-img">👤</div>
+
+                {% endif %}
+
+                {% if employee.description %}
+
+                <h2>About</h2>
+
+                <p style="line-height:1.8;margin-top:15px;">
+
+                    {{ employee.description }}
+
+                </p>
+
+                {% endif %}
+
+            </div>
+
+            <!-- RIGHT SIDE -->
+
+            <div>
+
+                <div class="detail-card">
+
+                    <h2 style="margin-bottom:25px;">
+                        Employee Information
+                    </h2>
+
+                    <div class="detail-row">
+                        <span class="label">Qualification</span>
+                        <span class="value">{{ employee.qualification }}</span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span class="label">Experience</span>
+                        <span class="value">{{ employee.experience }}</span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span class="label">Phone</span>
+                        <span class="value">{{ employee.phone }}</span>
+                    </div>
+
+                    <div class="detail-row">
+                        <span class="label">Email</span>
+                        <span class="value">{{ employee.email }}</span>
+                    </div>
+
+                </div>
+
+                <br>
+
+                <a href="{{ url_for('employees') }}"
+                   class="btn btn-dark">
+
+                    ← Back to Team
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

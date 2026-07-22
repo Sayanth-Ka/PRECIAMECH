@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %}{{ project.title }} — PRECIAMECH{% endblock %}
+{% block content %}
+
+<div class="project-hero">
+  <div class="container">
+    <p style="margin-bottom:1rem;">
+      <a href="{{ url_for('projects') }}" style="color:rgba(255,255,255,.6);font-size:.9rem;">← Back to Projects</a>
+    </p>
+    <h1>{{ project.title }}</h1>
+    <div class="project-meta">
+      <span>📍 {{ project.location }}</span>
+      <span>🏭 {{ project.sector_label }}</span>
+      {% if project.client_name %}<span>👤 {{ project.client_name }}</span>{% endif %}
+      <span>📅 {{ project.created_at.strftime('%B %Y') }}</span>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="detail-grid">
+      <div>
+        {% if project.image_filename %}
+          <img src="{{ url_for('static', filename='uploads/' + project.image_filename) }}"
+               alt="{{ project.title }}" style="width:100%;border-radius:var(--radius);margin-bottom:2rem;border:1px solid var(--border);">
+        {% endif %}
+        {% if project.description %}
+          <h3 style="font-weight:700;color:var(--navy);margin-bottom:1rem;font-size:1.3rem;">Project Overview</h3>
+          <p style="color:var(--muted);line-height:1.9;font-size:1rem;">{{ project.description }}</p>
+        {% endif %}
+      </div>
+
+      <div>
+        <div class="detail-card">
+          <h3 style="font-weight:700;color:var(--navy);margin-bottom:1.25rem;font-size:1.1rem;">Project Details</h3>
+          <div class="detail-row">
+            <span class="label">Status</span>
+            <span class="value">
+              {% if project.status == 'completed' %}
+                <span class="badge badge-green">Completed</span>
+              {% else %}
+                <span class="badge badge-gold">In Progress</span>
+              {% endif %}
+            </span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Sector</span>
+            <span class="value">{{ project.sector_label }}</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Location</span>
+            <span class="value">{{ project.location }}</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Scope of Work</span>
+            <span class="value" style="max-width:180px;text-align:right;font-size:.88rem;">{{ project.nature_of_work }}</span>
+          </div>
+          {% if project.client_name %}
+          <div class="detail-row">
+            <span class="label">Client</span>
+            <span class="value">{{ project.client_name }}</span>
+          </div>
+          {% endif %}
+          {% if project.featured %}
+          <div class="detail-row">
+            <span class="label">Featured</span>
+            <span class="value" style="color:var(--gold);">★ Yes</span>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

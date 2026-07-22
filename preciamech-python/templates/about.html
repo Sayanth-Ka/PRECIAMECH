@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}About Us — PRECIAMECH Engineering Consultants{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <div class="container">
+    <h1>About PRECIAMECH</h1>
+    <p>PRECIAMECH Engineering Consultants provides Engineering Consultancy Services for industrial segments. PRECIAMECH Engineering Consultants is a team of qualified and talented professionals with 25+years experience in Consultancy field, having vast experience in industrial segment specially in Pharmaceuticals (API &Formulations),
+Chemical, Food & Beverages and FMCG. PRECIAMECH Engineering Consultants is committed to provide Quality and Precise Engineering Services to suit the cost effective project implementation.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <h2 style="font-size:2rem;font-weight:800;color:var(--navy);margin-bottom:1.25rem;">Precision Engineering Since 2022</h2>
+        <p style="color:var(--muted);line-height:1.85;margin-bottom:1rem;">PRECIAMECH Engineering Consultants is committed to provide Quality and Precise Engineering Services to suit the cost effective project implementation.</p>
+        <p style="color:var(--muted);line-height:1.85;margin-bottom:1rem;">Based in Navi Mumbai — the industrial heartland of Maharashtra — we have grown from a small team of dedicated engineers into a full-service consultancy trusted by leading pharmaceutical, chemical, and FMCG manufacturers across India.</p>
+        <p style="color:var(--muted);line-height:1.85;">PRECIAMECH Engineering Consultants is a team of qualified and talented professionals with 25+years experience in Consultancy field, having vast experience in industrial segment specially in Pharmaceuticals (API &Formulations), Chemical, Food & Beverages and FMCG.</p>
+        <div style="display:flex;gap:2.5rem;margin-top:2.5rem;flex-wrap:wrap;">
+          <div style="text-align:center;"><div style="font-size:2rem;font-weight:800;color:var(--gold);">25+</div><div style="font-size:.85rem;color:var(--muted);">Years Experience</div></div>
+          <div style="text-align:center;"><div style="font-size:2rem;font-weight:800;color:var(--gold);">20+</div><div style="font-size:.85rem;color:var(--muted);">Projects Delivered</div></div>
+          <div style="text-align:center;"><div style="font-size:2rem;font-weight:800;color:var(--gold);">40+</div><div style="font-size:.85rem;color:var(--muted);">Satisfied Clients</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Our Core Values</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="grid-4">
+      {% for icon, title, desc in [
+        ('🎯','Precision','Every drawing, calculation, and specification is checked and cross-checked before delivery.'),
+        ('🤝','Integrity','Honest advice, transparent pricing, and clear communication throughout every project.'),
+        ('💡','Innovation','Embracing new technologies and methodologies to deliver better outcomes for clients.'),
+        ('⏱️','Reliability','On-time delivery and budget adherence — our track record speaks for itself.'),
+      ] %}
+      <div style="text-align:center;padding:2rem 1rem;">
+        <div style="font-size:2.5rem;margin-bottom:1rem;">{{ icon }}</div>
+        <h3 style="font-weight:700;color:var(--navy);margin-bottom:.5rem;">{{ title }}</h3>
+        <p style="font-size:.88rem;color:var(--muted);">{{ desc }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %}Projects Portfolio — PRECIAMECH{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <div class="container">
+    <h1>Our Projects</h1>
+    <p>Explore our portfolio of industrial engineering projects across multiple sectors.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="filters">
+      <a href="{{ url_for('projects') }}"
+         class="filter-btn {% if not selected_sector and not selected_status %}active{% endif %}">All</a>
+      {% for key, label in sectors.items() %}
+        <a href="{{ url_for('projects', sector=key) }}"
+           class="filter-btn {% if selected_sector == key %}active{% endif %}">{{ label }}</a>
+      {% endfor %}
+      <a href="{{ url_for('projects', status='completed') }}"
+         class="filter-btn {% if selected_status == 'completed' and not selected_sector %}active{% endif %}">✅ Completed</a>
+      <a href="{{ url_for('projects', status='in_progress') }}"
+         class="filter-btn {% if selected_status == 'in_progress' and not selected_sector %}active{% endif %}">🔄 In Progress</a>
+    </div>
+
+    {% if projects %}
+    <div class="grid-3">
+      {% for project in projects %}
+      <div class="card">
+        {% if project.image_filename %}
+          <img src="{{ url_for('static', filename='uploads/' + project.image_filename) }}"
+               alt="{{ project.title }}" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;">
+        {% else %}
+          <div class="card-img">🏭</div>
+        {% endif %}
+        <div class="card-body">
+          <div class="card-meta">
+            <span class="badge badge-blue">{{ project.sector_label }}</span>
+            {% if project.status == 'completed' %}
+              <span class="badge badge-green">Completed</span>
+            {% else %}
+              <span class="badge badge-gold">In Progress</span>
+            {% endif %}
+            {% if project.featured %}
+              <span class="badge" style="background:#fce7f3;color:#9d174d;">★ Featured</span>
+            {% endif %}
+          </div>
+          <div class="card-title">{{ project.title }}</div>
+          {% if project.client_name %}
+            <p style="font-size:.85rem;color:var(--muted);">👤 {{ project.client_name }}</p>
+          {% endif %}
+          <p style="font-size:.88rem;color:var(--muted);margin-top:.25rem;">📍 {{ project.location }}</p>
+          <p style="font-size:.85rem;color:var(--muted);margin-top:.5rem;">{{ project.nature_of_work }}</p>
+        </div>
+        <div class="card-footer">
+          <a href="{{ url_for('project_detail', project_id=project.id) }}" class="btn btn-dark btn-sm">View Details →</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center" style="padding:5rem 0;color:var(--muted);">
+      <p style="font-size:3rem;">📂</p>
+      <p style="margin-top:1rem;font-size:1.1rem;">No projects found for the selected filters.</p>
+      <a href="{{ url_for('projects') }}" class="btn btn-dark mt-2">Clear Filters</a>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}PRECIAMECH Engineering Consultants{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  {% block head %}{% endblock %}
+</head>
+<body>
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="{{ url_for('index') }}" class="navbar-brand">
+        <img src="{{ url_for('static', filename='uploads/logo.jpg') }}"
+             alt="PRECIAMECH Engineering Consultants" class="navbar-logo">PRECIAMECH Engineering Consultants
+      </a>
+      <ul class="nav-links">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('services') }}">Services</a></li>
+        <li><a href="{{ url_for('projects') }}">Projects</a></li>
+          <li><a href="{{ url_for('employees') }}">Employees</a></li>
+          <li><a href="{{ url_for('about') }}">About</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu">
+    <a href="{{ url_for('index') }}">Home</a>
+    <a href="{{ url_for('services') }}">Services</a>
+    <a href="{{ url_for('projects') }}">Projects</a>
+      <a href="{{ url_for('employees') }}">Employees</a>
+      <a href="{{ url_for('about') }}">About</a>
+    <a href="{{ url_for('about') }}">About</a>
+    <a href="{{ url_for('contact') }}">Contact</a>
+    <a href="{{ url_for('admin_login') }}">Admin Panel</a>
+  </div>
+</nav>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="container" style="margin-top:1rem;">
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+{% block content %}{% endblock %}
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>PRECIAMECH Engineering Consultants</h3>
+          <p>GST: 27XXXXX6745X1XX</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('services') }}">Services</a>
+        <a href="{{ url_for('projects') }}">Projects</a>
+        <a href="{{ url_for('about') }}">About Us</a>
+        <a href="{{ url_for('admin_login') }}">Admin Panel</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:ramesan.kasthuri@preciamech.in" target="_blank">MAIL US</a>
+          <p><a href="tel:+919869276252">+91 98692 76252 /</a><a href="tel:+919876543210">+91 98765 43210</a></p>
+          <a href="https://maps.app.goo.gl/hhNYZBcNjNGuJVdv5"><p style="font-size:.88rem;margin-top:.5rem;">Office No. 104, 1st Floor, A Wing, The Great Eastern Chamber, Sector – 11, CBD Belapur, Navi Mumbai, Maharashtra – 400614</p></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2022 PRECIAMECH Engineering Consultants. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block scripts %}{% endblock %}
+<script>
+const hero = document.querySelector(".hero");
+
+const backgrounds = [
+    "{{ url_for('static', filename='uploads/api_plant_image.png') }}",
+    "{{ url_for('static', filename='uploads/chemical_plant.png') }}",
+    "{{ url_for('static', filename='uploads/electrical_system.png') }}",
+    "{{ url_for('static', filename='uploads/fire_pump_house.png') }}",
+    "{{ url_for('static', filename='uploads/formulation_plant.png') }}",
+    "{{ url_for('static', filename='uploads/injectable_plant.png') }}",
+    "{{ url_for('static', filename='uploads/technical_area.png') }}",
+    "{{ url_for('static', filename='uploads/water_treatment_system.png') }}"
+];
+
+let current = 0;
+
+function changeBackground() {
+    hero.style.backgroundImage =
+        `linear-gradient(rgba(0,0,0,0.6), rgba(36,36,36,0.6)), url('${backgrounds[current]}')`;
+
+    current = (current + 1) % backgrounds.length;
+}
+
+changeBackground(); // Show the first image
+setInterval(changeBackground, 4000); // Change every 4 seconds
+</script>
+</body>
+</html>

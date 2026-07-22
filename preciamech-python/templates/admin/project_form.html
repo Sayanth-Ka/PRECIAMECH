@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if action == 'new' %}New Project{% else %}Edit: {{ project.title }}{% endif %} — Preciamech Admin</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="admin-layout">
+  <aside class="admin-sidebar">
+    <div class="sidebar-brand">
+      <div>Preciamech</div>
+      <small>Admin Panel</small>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="{{ url_for('admin_dashboard') }}"><span>📊</span> Dashboard</a>
+      <a href="{{ url_for('admin_project_new') }}"
+         {% if action == 'new' %}class="active"{% endif %}><span>➕</span> New Project</a>
+      <a href="{{ url_for('index') }}" target="_blank"><span>🌐</span> View Website</a>
+      <a href="{{ url_for('admin_logout') }}" style="margin-top:2rem;"><span>🚪</span> Sign Out</a>
+    </nav>
+  </aside>
+
+  <div class="admin-main">
+    <div class="admin-topbar">
+      <h1>{% if action == 'new' %}Add New Project{% else %}Edit Project{% endif %}</h1>
+      <a href="{{ url_for('admin_dashboard') }}" class="btn btn-sm"
+         style="border:1px solid var(--border);">← Back to Dashboard</a>
+    </div>
+
+    <div class="admin-content">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endwith %}
+
+      <div style="max-width:860px;">
+        <form method="post" enctype="multipart/form-data" class="form-card">
+          <div class="form-grid">
+
+            <div class="form-group form-full">
+              <label class="form-label">Project Title *</label>
+              <input type="text" name="title" class="form-control"
+                     value="{{ project.title if project else '' }}" required
+                     placeholder="e.g., Pharma API Plant Setup, FMCG Manufacturing Hub">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Client Name <small style="font-weight:400;color:var(--muted);">(optional)</small></label>
+              <input type="text" name="client_name" class="form-control"
+                     value="{{ project.client_name or '' }}"
+                     placeholder="Leave blank if confidential">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Location *</label>
+              <input type="text" name="location" class="form-control"
+                     value="{{ project.location if project else '' }}" required
+                     placeholder="e.g., Pune, Maharashtra">
+            </div>
+
+            <div class="form-group form-full">
+              <label class="form-label">Scope of Work *</label>
+              <input type="text" name="nature_of_work" class="form-control"
+                     value="{{ project.nature_of_work if project else '' }}" required
+                     placeholder="e.g., Process, Mechanical, Instrumentation & Electrical">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Sector *</label>
+              <select name="sector" class="form-control" required>
+                {% for key, label in sectors.items() %}
+                  <option value="{{ key }}"
+                    {% if project and project.sector == key %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+                <option value="other"
+                  {% if project and project.sector == 'other' %}selected{% endif %}>Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Status *</label>
+              <select name="status" class="form-control" required>
+                <option value="completed"
+                  {% if not project or project.status == 'completed' %}selected{% endif %}>Completed</option>
+                <option value="in_progress"
+                  {% if project and project.status == 'in_progress' %}selected{% endif %}>In Progress</option>
+              </select>
+            </div>
+
+            <div class="form-group form-full">
+              <label class="form-label">Description</label>
+              <textarea name="description" class="form-control" rows="5"
+                        placeholder="Detailed project overview, scope, challenges, and outcomes...">{{ project.description or '' }}</textarea>
+            </div>
+
+            <div class="form-group form-full">
+              <label class="form-label">Project Image</label>
+              {% if project and project.image_filename %}
+                <div style="margin-bottom:.75rem;">
+                  <img src="{{ url_for('static', filename='uploads/' + project.image_filename) }}"
+                       alt="Current image"
+                       style="max-width:320px;border-radius:var(--radius);border:1px solid var(--border);">
+                  <p style="font-size:.82rem;color:var(--muted);margin-top:.4rem;">
+                    Upload a new image below to replace the current one.
+                  </p>
+                </div>
+              {% endif %}
+              <input type="file" name="image" class="form-control" accept="image/*"
+                     style="padding:.45rem;">
+              <p style="font-size:.82rem;color:var(--muted);margin-top:.3rem;">
+                Accepted: JPG, PNG, GIF, WebP — Max 16 MB.
+              </p>
+            </div>
+
+            <div class="form-group form-full">
+              <div class="form-check">
+                <input type="checkbox" name="featured" id="featured"
+                       {% if project and project.featured %}checked{% endif %}>
+                <label for="featured" class="form-label" style="margin-bottom:0;cursor:pointer;font-weight:500;">
+                  ⭐ Feature this project on the homepage
+                </label>
+              </div>
+            </div>
+
+          </div>
+
+          <div style="display:flex;gap:1rem;justify-content:flex-end;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border);">
+            <a href="{{ url_for('admin_dashboard') }}" class="btn"
+               style="border:1px solid var(--border);color:var(--text);">Cancel</a>
+            <button type="submit" class="btn btn-primary">
+              {% if action == 'new' %}Create Project{% else %}Save Changes{% endif %}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

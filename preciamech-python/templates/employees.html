@@ -1,0 +1,230 @@
+{% extends 'base.html' %}
+
+{% block title %}Our Team - PRECIAMECH Engineering Consultants{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <div class="container">
+        <h1>Our Team</h1>
+        <p>Meet the professionals behind PRECIAMECH Engineering Consultants.</p>
+    </div>
+</div>
+
+<!-- ================= KEY PERSONS ================= -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <h2>Senior Managers</h2>
+
+            <div class="divider"></div>
+
+        </div>
+
+        <div class="grid-3">
+
+            {% for employee in senior_manager %}
+
+            <div class="card">
+
+                {% if employee.image_filename %}
+
+                <img src="{{ url_for('static', filename='uploads/' + employee.image_filename) }}"
+                     style="width:100%;height:300px;object-fit:cover;">
+
+                {% else %}
+
+                <div class="card-img">👤</div>
+
+                {% endif %}
+
+                <div class="card-body">
+
+                    <h3>Name : {{ employee.name }}</h3>
+
+                    <p>Experience : {{ employee.experience }}</p>
+
+                </div>
+
+                <div class="card-footer">
+
+                    <a href="{{ url_for('employee_detail',
+                    employee_id=employee.id) }}"
+                    class="btn btn-dark btn-sm">
+
+                        View Profile
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section"
+         style="background:var(--bg);">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <h2>Managers</h2>
+
+            <div class="divider"></div>
+
+        </div>
+
+        <div class="grid-4">
+
+            {% for employee in manager %}
+
+            <div class="card">
+
+                {% if employee.image_filename %}
+
+                <img src="{{ url_for('static', filename='uploads/' + employee.image_filename) }}"
+                     style="width:100%;height:250px;object-fit:cover;">
+
+                {% else %}
+
+                <div class="card-img">👷</div>
+
+                {% endif %}
+
+                <div class="card-body">
+
+                    <h3>Name : {{ employee.name }}</h3>
+
+                    <p>Experience : {{ employee.experience }}</p>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <h2>Engineers</h2>
+
+            <div class="divider"></div>
+
+        </div>
+
+        <div class="grid-3">
+
+            {% for employee in engineer %}
+
+            <div class="card">
+
+                {% if employee.image_filename %}
+
+                <img src="{{ url_for('static', filename='uploads/' + employee.image_filename) }}"
+                     style="width:100%;height:300px;object-fit:cover;">
+
+                {% else %}
+
+                <div class="card-img">👤</div>
+
+                {% endif %}
+
+                <div class="card-body">
+
+                    <h3>Name : {{ employee.name }}</h3>
+
+                    <p>Experience : {{ employee.experience }}</p>
+
+                </div>
+
+                <div class="card-footer">
+
+                    <a href="{{ url_for('employee_detail',
+                    employee_id=employee.id) }}"
+                    class="btn btn-dark btn-sm">
+
+                        View Profile
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section"
+         style="background:var(--bg);">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <h2>Designers</h2>
+
+            <div class="divider"></div>
+
+        </div>
+
+        <div class="grid-4">
+
+            {% for employee in manager %}
+
+            <div class="card">
+
+                {% if employee.image_filename %}
+
+                <img src="{{ url_for('static', filename='uploads/' + employee.image_filename) }}"
+                     style="width:100%;height:250px;object-fit:cover;">
+
+                {% else %}
+
+                <div class="card-img">👷</div>
+
+                {% endif %}
+
+                <div class="card-body">
+
+                    <h3>Name : {{ employee.name }}</h3>
+
+                    <p>Experience : {{ employee.experience }}</p>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

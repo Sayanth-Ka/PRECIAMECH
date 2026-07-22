@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="admin-layout">
+
+    <aside class="admin-sidebar">
+
+        <div class="sidebar-brand">
+            <div>Preciamech</div>
+            <small>Admin Panel</small>
+        </div>
+
+        <nav class="sidebar-nav">
+
+    <a href="{{ url_for('admin_dashboard') }}" class="active">
+        <span>📊</span> Dashboard
+    </a>
+
+    <a href="{{ url_for('admin_project_new') }}">
+        <span>➕</span> Add Project
+    </a>
+
+    <a href="{{ url_for('admin_employees') }}">
+        <span>👨‍💼</span> Employees
+    </a>
+
+    <a href="{{ url_for('admin_employee_new') }}">
+        <span>👤</span> Add Employee
+    </a>
+
+    <a href="{{ url_for('index') }}" target="_blank">
+        <span>🌐</span> View Website
+    </a>
+
+    <a href="{{ url_for('admin_logout') }}" style="margin-top:2rem;">
+        <span>🚪</span> Sign Out
+    </a>
+
+</nav>
+
+    </aside>
+
+    <div class="admin-main">
+
+        <div class="admin-topbar">
+
+            <h1>Employees</h1>
+
+            <a href="{{ url_for('admin_employee_new') }}"
+               class="btn btn-primary">
+                + Add Employee
+            </a>
+
+        </div>
+
+        <div class="admin-content">
+
+            <div class="table-card">
+
+                <div class="table-header">
+
+                    <h3>Employee List</h3>
+
+                </div>
+
+                <table class="data-table">
+
+                    <thead>
+
+                    <tr>
+
+                        <th>Photo</th>
+
+                        <th>Name</th>
+
+                        <th>Category</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    {% for employee in employees %}
+
+                    <tr>
+
+                        <td>
+
+                            {% if employee.image_filename %}
+
+                            <img src="{{ url_for('static', filename='uploads/' + employee.image_filename) }}"
+                                 width="60"
+                                 style="border-radius:50%;">
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>{{ employee.name }}</td>
+
+                        <td>{{ employee.category }}</td>
+
+                        <td>
+
+                            <a href="{{ url_for('admin_employee_edit',
+                            employee_id=employee.id) }}"
+                               class="btn btn-dark btn-sm">
+                                Edit
+                            </a>
+
+                            <form method="POST"
+                                  action="{{ url_for('admin_employee_delete',
+                                  employee_id=employee.id) }}"
+                                  style="display:inline;">
+
+                                <button class="btn btn-danger btn-sm">
+
+                                    Delete
+
+                                </button>
+
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+
+

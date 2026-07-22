@@ -1,0 +1,272 @@
+{% extends 'base.html' %}
+{% block title %}Services — PRECIAMECH Engineering Consultants{% endblock %}
+{% block content %}
+
+<div class="page-header-title">
+  <div class="container">
+    <h1>Our Services AND DETAILS</h1>
+  </div>
+</div>
+
+<section class="details">
+
+</section>
+
+
+<div class="page-header">
+  <div class="container">
+    <h1>OUR SERVICES</h1>
+  </div>
+</div>
+<section class="section">
+  <div class="container">
+    {% set services = [
+      ('💡','Concept Engineering','Developing innovative and practical engineering concepts based on client requirements, feasibility studies, and project objectives.'),
+      ('📐','Basic Engineering','Preparing preliminary engineering designs, process layouts, equipment specifications, and technical documentation to establish the project foundation.'),
+      ('🏭','Detailed Engineering','Producing comprehensive engineering drawings, calculations, specifications, and construction-ready documents for project execution.'),
+      ('📦','Procurement Assistance','Supporting the procurement process through technical bid evaluation, vendor selection, material specifications, and procurement documentation.'),
+      ('👷','Construction Management','Supervising construction activities to ensure quality, safety, schedule adherence, and compliance with engineering standards and project requirements.'),
+      ('📄','Documentation','Effluent treatment plant design, fire protection and detection systems, HAZOP and HAZAN studies, safety audits, SIL studies, and statutory approvals liaison.'),
+    ] %}
+    <div class="grid-2">
+      {% for icon, title, desc in services %}
+      <div class="service-card flex" style="gap:1.5rem;align-items:flex-start;">
+        <div class="service-icon" style="flex-shrink:0;">{{ icon }}</div>
+        <div>
+          <h3 style="font-weight:700;color:var(--navy);margin-bottom:.5rem;">{{ title }}</h3>
+          <p style="font-size:.92rem;color:var(--muted);line-height:1.7;">{{ desc }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+<div class="page-header">
+  <div class="container">
+    <h1>DETAILS</h1>
+  </div>
+</div>
+<div class="service-section">
+
+    <details class="service-details">
+        <summary>🏛️ Architectural Design</summary>
+
+        <table class="service-table">
+            <tr>
+                <th>Service</th>
+                <th>Description</th>
+            </tr>
+
+            <tr>
+                <td>Design Basis</td>
+                <td>Preparation of project design criteria and engineering basis.</td>
+            </tr>
+
+            <tr>
+                <td>Plot Plan Development</td>
+                <td>Development of optimized site and plot layouts.</td>
+            </tr>
+
+            <tr>
+                <td>Statutory Drawings</td>
+                <td>Preparation of statutory approval drawings.</td>
+            </tr>
+
+            <tr>
+                <td>Floor Plans, Sections & Elevations</td>
+                <td>Complete architectural drawings including structural glazing and finishing details.</td>
+            </tr>
+
+            <tr>
+                <td>3D Designs</td>
+                <td>3D visualization and architectural rendering.</td>
+            </tr>
+
+        </table>
+    </details>
+
+
+    <details class="service-details">
+        <summary>🏗️ Civil & Structural Design</summary>
+
+        <table class="service-table">
+            <tr>
+                <th>Service</th>
+                <th>Description</th>
+            </tr>
+
+            <tr><td>Design Basis</td><td>Preparation of civil and structural design criteria.</td></tr>
+            <tr><td>Site Development Drawings</td><td>Site grading, drainage and road layouts.</td></tr>
+            <tr><td>RCC Design & Drawings</td><td>Reinforced concrete structural design.</td></tr>
+            <tr><td>Structural Design & Drawings</td><td>Steel and RCC structural drawings.</td></tr>
+            <tr><td>Tender Documentation</td><td>Preparation of tender documents.</td></tr>
+            <tr><td>Procurement Assistance</td><td>Bid evaluation and procurement support.</td></tr>
+            <tr><td>Vendor Engineering</td><td>Vendor drawing approval, inspection and expediting.</td></tr>
+            <tr><td>Cost Estimation</td><td>Project cost estimation.</td></tr>
+            <tr><td>Construction Management</td><td>Construction supervision and management.</td></tr>
+
+        </table>
+    </details>
+
+    <details class="service-details">
+    <summary>⚙️ Process Engineering</summary>
+
+    <table class="service-table">
+        <tr>
+            <th>Service</th>
+            <th>Description</th>
+        </tr>
+
+        <tr><td>Design Basis</td><td>Preparation of process design criteria.</td></tr>
+        <tr><td>Energy Balance</td><td>Mass and energy balance calculations.</td></tr>
+        <tr><td>Process Flow Diagram (PFD)</td><td>Preparation of process flow diagrams.</td></tr>
+        <tr><td>Piping & Instrumentation Diagram (P&ID)</td><td>Development of P&IDs for process systems.</td></tr>
+        <tr><td>Process Datasheets</td><td>Preparation of equipment and process datasheets.</td></tr>
+        <tr><td>Equipment List</td><td>Preparation of equipment schedules.</td></tr>
+        <tr><td>Commissioning Support</td><td>Assistance during commissioning and troubleshooting.</td></tr>
+    </table>
+    </details>
+
+    <details class="service-details">
+    <summary>🔧 Mechanical Engineering</summary>
+
+    <table class="service-table">
+        <tr>
+            <th>Service</th>
+            <th>Description</th>
+        </tr>
+
+        <tr><td>Design Basis</td><td>Mechanical engineering design basis.</td></tr>
+        <tr><td>Layout Drawings</td><td>Equipment, foundation, piping layouts, piping isometrics and statutory drawings.</td></tr>
+        <tr><td>Technical Specifications</td><td>Preparation of specifications for equipment, piping, valves and tender documents.</td></tr>
+        <tr><td>Procurement Assistance</td><td>Bid evaluation and procurement recommendations.</td></tr>
+        <tr><td>Vendor Engineering</td><td>Vendor drawing approval, inspection and expediting.</td></tr>
+        <tr><td>Cost Estimation</td><td>Project cost estimation.</td></tr>
+        <tr><td>Construction Management</td><td>Construction supervision and management.</td></tr>
+    </table>
+    </details>
+
+    <details class="service-details">
+    <summary>🎛️ Instrumentation Engineering</summary>
+
+    <table class="service-table">
+        <tr>
+            <th>Service</th>
+            <th>Description</th>
+        </tr>
+
+        <tr><td>Design Basis</td><td>Instrumentation design criteria.</td></tr>
+        <tr><td>Instrument Schedules</td><td>Preparation of Instrument List, IO List, Air Header Schedule and JB Schedule.</td></tr>
+        <tr><td>Control System Design</td><td>Control room layout, cable tray layout, loop diagrams and hook-up drawings.</td></tr>
+        <tr><td>Instrument Specifications</td><td>Preparation of PLC, DCS and control system specifications.</td></tr>
+        <tr><td>Procurement Assistance</td><td>Bid evaluation and procurement recommendations.</td></tr>
+        <tr><td>Vendor Engineering</td><td>Vendor drawing approval, inspection and expediting.</td></tr>
+        <tr><td>Cost Estimation</td><td>Project cost estimation.</td></tr>
+        <tr><td>Construction Management</td><td>Construction supervision and management.</td></tr>
+    </table>
+    </details>
+
+    <details class="service-details">
+    <summary>💧 Water System Engineering</summary>
+
+    <table class="service-table">
+        <tr>
+            <th>Service</th>
+            <th>Description</th>
+        </tr>
+
+        <tr><td>Design Basis</td><td>Design in compliance with IS, WHO, USFDA, EP and JP standards.</td></tr>
+        <tr><td>Water Balance</td><td>Water balance, pressure drop calculations, PFD and P&ID.</td></tr>
+        <tr><td>Layout Drawings</td><td>Equipment, foundation and piping layouts.</td></tr>
+        <tr><td>Water Treatment Systems</td><td>Engineering of PW, WFI, Pure Steam and Clean Utility systems.</td></tr>
+        <tr><td>Procurement Assistance</td><td>Bid evaluation and procurement recommendations.</td></tr>
+        <tr><td>Vendor Engineering</td><td>Vendor drawing approval, inspection and expediting.</td></tr>
+        <tr><td>Cost Estimation</td><td>Project cost estimation.</td></tr>
+        <tr><td>Construction Management</td><td>Construction supervision and management.</td></tr>
+    </table>
+    </details>
+
+    <details class="service-details">
+    <summary>♻️ Sewage & Effluent Treatment Engineering</summary>
+
+    <table class="service-table">
+        <tr>
+            <th>Service</th>
+            <th>Description</th>
+        </tr>
+
+        <tr><td>Design Basis</td><td>Design in compliance with CPCB and Pollution Control Authority guidelines.</td></tr>
+        <tr><td>Hydraulic Design</td><td>Preparation of PFD and Hydraulic Flow Diagrams.</td></tr>
+        <tr><td>Layout Drawings</td><td>Equipment and piping layouts.</td></tr>
+        <tr><td>Treatment Systems</td><td>Engineering of STP, ETP, ZLD, RO, MEE and ATFD systems.</td></tr>
+        <tr><td>Procurement Assistance</td><td>Bid evaluation and procurement recommendations.</td></tr>
+        <tr><td>Vendor Engineering</td><td>Vendor drawing approval, inspection and expediting.</td></tr>
+        <tr><td>Cost Estimation</td><td>Project cost estimation.</td></tr>
+        <tr><td>Construction Management</td><td>Construction supervision and management.</td></tr>
+    </table>
+    </details>
+
+    <details class="service-details">
+    <summary>⚡ Electrical Engineering</summary>
+
+    <table class="service-table">
+        <tr>
+            <th>Service</th>
+            <th>Description</th>
+        </tr>
+
+        <tr><td>Design Basis</td><td>Electrical engineering design criteria.</td></tr>
+        <tr><td>Electrical Layouts</td><td>SLD, substation, panel room, lighting, cable tray, LV and earthing layouts.</td></tr>
+        <tr><td>Equipment Specifications</td><td>Preparation of equipment specifications and tender documents.</td></tr>
+        <tr><td>Procurement Assistance</td><td>Bid evaluation and procurement recommendations.</td></tr>
+        <tr><td>Vendor Engineering</td><td>Vendor drawing approval, inspection and expediting.</td></tr>
+        <tr><td>Cost Estimation</td><td>Project cost estimation.</td></tr>
+        <tr><td>Construction Management</td><td>Construction supervision and management.</td></tr>
+    </table>
+    </details>
+
+    <details class="service-details">
+    <summary>❄️ HVAC Engineering</summary>
+
+    <table class="service-table">
+        <tr>
+            <th>Service</th>
+            <th>Description</th>
+        </tr>
+
+        <tr><td>Design Basis</td><td>HVAC design criteria.</td></tr>
+        <tr><td>Load Calculations</td><td>Heating and cooling load calculations.</td></tr>
+        <tr><td>HVAC Layouts</td><td>Zoning, airflow, ducting, piping, BMS, cable tray and diffuser layouts.</td></tr>
+        <tr><td>Equipment Specifications</td><td>Preparation of HVAC equipment specifications and tender documents.</td></tr>
+        <tr><td>Procurement Assistance</td><td>Bid evaluation and procurement recommendations.</td></tr>
+        <tr><td>Vendor Engineering</td><td>Vendor drawing approval, inspection and expediting.</td></tr>
+        <tr><td>Cost Estimation</td><td>Project cost estimation.</td></tr>
+        <tr><td>Construction Management</td><td>Construction supervision and management.</td></tr>
+    </table>
+    </details>
+
+    <details class="service-details">
+    <summary>🔥 Fire Protection System</summary>
+
+    <table class="service-table">
+        <tr>
+            <th>Service</th>
+            <th>Description</th>
+        </tr>
+
+        <tr><td>Design Basis</td><td>Design in accordance with NBC, NFPA, FM Global and local regulations.</td></tr>
+        <tr><td>Detailed Engineering</td><td>Complete fire protection engineering and compliance.</td></tr>
+        <tr><td>Fire System Design</td><td>Hydrant, sprinkler, extinguisher, foam, fire alarm and gas suppression systems.</td></tr>
+        <tr><td>Equipment Specifications</td><td>Preparation of fire protection equipment specifications and tender documents.</td></tr>
+        <tr><td>Procurement Assistance</td><td>Bid evaluation and procurement recommendations.</td></tr>
+        <tr><td>Vendor Engineering</td><td>Vendor drawing approval, inspection and expediting.</td></tr>
+        <tr><td>Cost Estimation</td><td>Project cost estimation.</td></tr>
+        <tr><td>Construction Management</td><td>Construction supervision and management.</td></tr>
+    </table>
+    </details>
+
+</div>
+
+{% endblock %}

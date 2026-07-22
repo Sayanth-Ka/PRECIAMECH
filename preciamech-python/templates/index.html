@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}PRECIAMECH Engineering Consultants — Great Value Engineering Services{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Great Value<br><span>Engineering Services</span></h1>
+        <p>PRECIAMECH stands for<br><b>PR</b>   ocess<br><b>E</b>  lectrical<br><b>C</b>   ivil<br><b>I</b>    nstrumentation<br><b>A</b>  rchitecture Designs<br><b>MEC</b>   hanical<br><b>H</b>  VAC</p>
+      <div class="hero-btns">
+        <a href="{{ url_for('projects') }}" class="btn btn-outline">View Portfolio</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-val">{{ total }}+</div><div class="stat-label">Projects Delivered</div></div>
+        <div><div class="stat-val">25+</div><div class="stat-label">Years Experience</div></div>
+        <div><div class="stat-val">{{ sectors|length }}</div><div class="stat-label">Industry Sectors</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Our Key Clients</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="grid-6">
+        <img src="{{ url_for('static', filename='uploads/alpha_pharma.png') }}" alt="alpha_pharma Logo" height="180" width="180">
+        <img src="{{ url_for('static', filename='uploads/bharat_biotech.png') }}" alt="bharat-biotech Logo" height="180" width="180">
+        <img src="{{ url_for('static', filename='uploads/emcure.png') }}" alt="emcure Logo" height="180"width="180">
+        <img src="{{ url_for('static', filename='uploads/fresenius_kabi.png') }}" alt="fresenius-kabi Logo" height="180" width="180">
+        <img src="{{ url_for('static', filename='uploads/indoco.png') }}" alt="indoco Logo" height="180" width="180">
+        <img src="{{ url_for('static', filename='uploads/omniActive.png') }}" alt="omniActive Logo" height="180" width="180">
+        <img src="{{ url_for('static', filename='uploads/sun_pharma.png') }}" alt="sunpharma Logo" height="120" width="180">
+        <img src="{{ url_for('static', filename='uploads/suparna.png') }}" alt="suparna Logo" height="180" width="180">
+        <img src="{{ url_for('static', filename='uploads/unichem_laboratories.png') }}" alt="unichem-laboratories Logo" height="180" width="180">
+        <img src="{{ url_for('static', filename='uploads/Warren1.png') }}" alt="Warren Logo" height="180" width="180">
+    </div>
+</section>
+{% endblock %}
