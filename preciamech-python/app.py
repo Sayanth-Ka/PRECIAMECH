@@ -387,6 +387,8 @@ class Employee(db.Model):
     phone = db.Column(db.String(30))
     email = db.Column(db.String(150))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+with app.app_context():
+    db.create_all()
 
 if __name__ == '__main__':
     init_db()
